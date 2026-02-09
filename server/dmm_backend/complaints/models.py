@@ -3,8 +3,11 @@ from django.db import models
 class Complaint(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
+    email = models.EmailField(blank=True, null=True)
+    subject = models.CharField(max_length=200, blank=True, null=True)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
 
     class Meta:
         ordering = ["-created_at"]  # ✅ keeps newest first
