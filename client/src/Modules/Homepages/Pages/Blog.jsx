@@ -100,7 +100,7 @@ const BlogHome = () => {
                 </span>
             </div>
             {/* Massive Geometric Title */}
-            <h2 className={`text-5xl md:text-8xl font-black text-[#0024f8] leading-none uppercase ${isTamil ? 'font-tamil' : 'tracking-tighter'}`}>
+            <h2 className={`text-5xl md:text-6xl font-black text-[#0024f8] leading-none uppercase ${isTamil ? 'font-tamil' : 'tracking-tighter'}`}>
                 {isTamil ? "நிகழ்வுகள்" : "Events"}
             </h2>
 

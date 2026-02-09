@@ -76,7 +76,7 @@ const HomeGallery = () => {
             {t.sub || "Visual Journey"}
           </span>
 
-          <h2 className={`text-4xl md:text-7xl font-black text-[#0024f8] leading-none ${isTamil ? 'font-tamil' : 'tracking-tighter'}`}>
+          <h2 className={`text-4xl md:text-6xl font-black text-[#0024f8] leading-none ${isTamil ? 'font-tamil' : 'tracking-tighter'}`}>
             {t.title}
           </h2>
 
