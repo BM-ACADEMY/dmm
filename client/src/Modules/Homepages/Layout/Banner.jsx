@@ -112,6 +112,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import BannerImg1 from "../../../assets/banner/dmmbanner1.jpeg";
 import BannerImg2 from "../../../assets/banner/dmmbanner2.jpeg";
 import BannerImg3 from "../../../assets/banner/dmmbanner3.jpeg";
+import BannerImg4 from "../../../assets/banner/dmmbanner4.jpeg";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -132,6 +133,11 @@ const Banner = () => {
       image: BannerImg2, // <--- FIXED: Added missing comma here
       alt: "National People's Front Banner 3",
     },
+    {
+      id: 4,
+      image: BannerImg4,
+      alt: "National People's Front Banner 4",
+    }
   ];
 
   // ✅ Auto-Slide Logic
