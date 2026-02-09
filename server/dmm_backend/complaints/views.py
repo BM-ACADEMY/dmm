@@ -11,12 +11,10 @@ class ComplaintViewSet(viewsets.ModelViewSet):
     serializer_class = ComplaintSerializer
     permission_classes = [AllowAny]
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        complaint = serializer.save()
+    def perform_create(self, serializer):
+        """Save in SQLite and also sync to MongoDB if connected."""
+        complaint = serializer.save()  # ✅ Save to SQLite first
 
-        # Mongo sync
         db = get_db()
         if db:
             try:
@@ -28,12 +26,11 @@ class ComplaintViewSet(viewsets.ModelViewSet):
                     "message": complaint.message,
                     "created_at": datetime.utcnow(),
                 })
+                if settings.DEBUG:
+                    print("✅ Complaint also saved to MongoDB")
             except Exception as e:
-                print("Mongo error:", e)
-
-        # 🔥 RETURN SIMPLE RESPONSE (no serializer.data)
-        return Response(
-            {"message": "Complaint submitted successfully"},
-            status=201
-        )
-
+                if settings.DEBUG:
+                    print(f"⚠️ Failed to save complaint in MongoDB: {e}")
+        else:
+            if settings.DEBUG:
+                print("⚠️ MongoDB not connected. Complaint only saved in SQLite.")
