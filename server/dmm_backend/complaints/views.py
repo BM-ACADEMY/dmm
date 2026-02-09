@@ -21,6 +21,8 @@ class ComplaintViewSet(viewsets.ModelViewSet):
                 db.complaints.insert_one({
                     "name": complaint.name,
                     "phone": complaint.phone,
+                    "email": complaint.email,
+                    "subject": complaint.subject,
                     "message": complaint.message,
                     "created_at": datetime.utcnow(),
                 })

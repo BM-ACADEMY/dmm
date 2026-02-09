@@ -13,7 +13,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { complaintsData } from "../../../data/complaints";
 
 // 🔴 FIX: Hardcoded URL to prevent 404 Errors
-const API_BASE_URL = "https://api.dmmparty.com/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // --- Background Pattern ---
 const CampaignBackground = () => (
