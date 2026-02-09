@@ -12,7 +12,8 @@ import Footer from "../Layout/Footer";
 import { useLanguage } from "../../../context/LanguageContext";
 import { complaintsData } from "../../../data/complaints";
 
-// 🔴 FIX: Hardcoded URL to prevent 404 Errors
+// ✅ Dynamic URL from .env file
+// This will read: http://127.0.0.1:8000/api
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // --- Background Pattern ---
@@ -61,8 +62,11 @@ export default function Complaint() {
     if (!validate()) return;
     setSubmitting(true);
 
+    // DEBUG: Check console to ensure the URL is correct
+    console.log("Submitting to:", `${API_BASE_URL}/complaints/`);
+
     try {
-      // 🔴 Sending request to: https://api.dmmparty.com/api/complaints/
+      // ✅ Uses the variable from .env
       await axios.post(`${API_BASE_URL}/complaints/`, formData);
 
       toast.success(t.messages.success);
@@ -73,14 +77,14 @@ export default function Complaint() {
       // Handle Errors
       if (err.response) {
         if (err.response.status === 404) {
-          toast.error("Error 404: API endpoint not found. Check Server URL.");
+          toast.error(`Error 404: Endpoint not found at ${API_BASE_URL}`);
         } else if (err.response.status === 500) {
           toast.error("Server Error (500): The backend crashed. Please check server logs.");
         } else {
           toast.error(err.response.data?.message || t.messages.fail);
         }
       } else {
-        toast.error("Network Error: check your internet connection.");
+        toast.error("Network Error: check your internet connection and ensure backend is running.");
       }
     }
     setSubmitting(false);
