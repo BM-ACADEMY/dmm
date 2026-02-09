@@ -24,8 +24,9 @@ export const translations = {
       aboutMenu: {
         background: "Background",
         vision: "Vision",
+        ideology: "Political Ideology",
         philosophy: "Political Philosophy",
-        ideology: "Political Ideology", // ✅ ADD THIS
+         // ✅ ADD THIS
       }
     },
     // Hero Section
@@ -75,9 +76,10 @@ export const translations = {
       // ✅ ADDED THIS FOR DROPDOWN (TAMIL)
       aboutMenu: {
         background: "பின்னணி",
-        vision: "நோக்கம் & தத்துவம்",
-        philosophy: "அரசியல் கொள்கைகள்",
-        ideology: "அரசியல் சித்தாந்தம்", // ✅ ADD THIS
+        vision: "நோக்கம் ",
+        ideology: "அரசியல் கொள்கைகள்",
+        philosophy: "அரசியல் தத்துவம்",
+         // ✅ ADD THIS
       }
     },
     // Hero Section
