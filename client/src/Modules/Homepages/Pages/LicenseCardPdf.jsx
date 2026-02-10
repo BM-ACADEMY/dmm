@@ -108,8 +108,37 @@ export default function LicenseCardPdf({ license = {} }) {
     width: "100%",
     height: "100%",
     objectFit: "cover", // Fixes the stretching issue
+    borderRadius: "50%", // Ensures html2canvas clips it properly
     display: "block"
   };
+
+  // --- IMAGE PRE-LOADING (Fix for PDF) ---
+  const [base64Images, setBase64Images] = useState({ logo: null, founder: null });
+
+  React.useEffect(() => {
+    const convertToBase64 = async (imgUrl) => {
+      try {
+        const response = await fetch(imgUrl);
+        const blob = await response.blob();
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        });
+      } catch (e) {
+        console.error("Image conversion failed", e);
+        return imgUrl; // Fallback
+      }
+    };
+
+    const loadImages = async () => {
+      const l = await convertToBase64(logo);
+      const f = await convertToBase64(personImage);
+      setBase64Images({ logo: l, founder: f });
+    };
+
+    loadImages();
+  }, []);
 
   return (
     <div className="flex flex-col items-center p-8 bg-gray-200 min-h-screen">
@@ -150,7 +179,11 @@ export default function LicenseCardPdf({ license = {} }) {
         }}>
           {/* Logo Left */}
           <div style={headerCircleStyle}>
-            <img src={logo} crossOrigin="anonymous" style={{ ...imgInsideCircle, objectFit: "contain", padding: "4px" }} alt="logo" />
+            <img 
+              src={base64Images.logo || logo} 
+              style={{ ...imgInsideCircle, objectFit: "contain", padding: "4px" }} 
+              alt="logo" 
+            />
           </div>
 
           {/* Center Text */}
@@ -165,7 +198,11 @@ export default function LicenseCardPdf({ license = {} }) {
 
           {/* Founder Right (Fixed Stretching) */}
           <div style={headerCircleStyle}>
-            <img src={personImage} crossOrigin="anonymous" style={imgInsideCircle} alt="founder" />
+            <img 
+              src={base64Images.founder || personImage} 
+              style={imgInsideCircle} 
+              alt="founder" 
+            />
           </div>
         </div>
 

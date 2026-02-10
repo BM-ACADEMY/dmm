@@ -14,6 +14,7 @@ import {
   Phone,
   MapPin
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function LicenseAdmin() {
@@ -212,6 +213,20 @@ export default function LicenseAdmin() {
                           title="Delete Request"
                         >
                           <Trash2 size={16} />
+                        </button>
+                        
+                        <button
+                          onClick={() => {
+                            const message = item.is_approved 
+                              ? `Hello ${item.name}, here is your membership certificate: ${item.certificate_pdf}`
+                              : `Hello ${item.name}, your membership application is under review.`;
+                            const url = `https://api.whatsapp.com/send?phone=91${item.phone}&text=${encodeURIComponent(message)}`;
+                            window.open(url, "_blank");
+                          }}
+                          className="p-2 rounded-lg bg-green-50 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all"
+                          title="Share on WhatsApp"
+                        >
+                          <FaWhatsapp size={16} />
                         </button>
                       </div>
                     </td>
