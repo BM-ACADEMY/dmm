@@ -11,26 +11,44 @@ class ComplaintViewSet(viewsets.ModelViewSet):
     serializer_class = ComplaintSerializer
     permission_classes = [AllowAny]
 
-    def perform_create(self, serializer):
-        """Save in SQLite and also sync to MongoDB if connected."""
-        complaint = serializer.save()  # ✅ Save to SQLite first
-
-        db = get_db()
-        if db:
+    def create(self, request, *args, **kwargs):
+        try:
+            # 1. Standard Create Logic (SQLite)
+            response = super().create(request, *args, **kwargs)
+            
+            # 2. Attempt MongoDB Sync (Best Effort)
             try:
-                db.complaints.insert_one({
-                    "name": complaint.name,
-                    "phone": complaint.phone,
-                    "email": complaint.email,
-                    "subject": complaint.subject,
-                    "message": complaint.message,
-                    "created_at": datetime.utcnow(),
-                })
-                if settings.DEBUG:
-                    print("✅ Complaint also saved to MongoDB")
+                # If we get here, SQLite save was successful.
+                # Use the serialized data from the response.
+                data = response.data
+                db = get_db()
+                if db:
+                    db.complaints.insert_one({
+                        "name": data.get("name"),
+                        "phone": data.get("phone"),
+                        "email": data.get("email"),
+                        "subject": data.get("subject"),
+                        "message": data.get("message"),
+                        "created_at": datetime.utcnow(),
+                    })
+                    if settings.DEBUG:
+                        print("✅ Complaint also saved to MongoDB")
             except Exception as e:
-                # Log error but prevent crash so SQLite save is still successful for user
+                # Log error but do NOT fail the request
                 print(f"⚠️ Failed to save complaint in MongoDB (Ignored): {e}")
-        else:
-            if settings.DEBUG:
-                print("⚠️ MongoDB not connected. Complaint only saved in SQLite.")
+
+            return response
+
+        except Exception as e:
+            # Catch-all for any other crashes
+            print(f"❌ Critical Error in Complaint Submission: {e}")
+            from rest_framework.response import Response
+            from rest_framework import status
+            return Response(
+                {"error": "Internal Server Error during submission."},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+    def perform_create(self, serializer):
+        # Just standard save, MongoDB logic moved to create() for safety
+        serializer.save()
