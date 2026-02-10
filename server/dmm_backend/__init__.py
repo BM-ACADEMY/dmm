@@ -15,11 +15,11 @@ def connect_mongo():
             client.admin.command('ping')
             db = client[MONGO_DB_NAME]
             if settings.DEBUG:
-                print(f"✅ Connected to MongoDB Atlas: {MONGO_DB_NAME}")
+                print(f"[SUCCESS] Connected to MongoDB Atlas: {MONGO_DB_NAME}")
         except Exception as e:
             db = None
             if settings.DEBUG:
-                print(f"❌ MongoDB Atlas connection error: {e}")
+                print(f"[ERROR] MongoDB Atlas connection error: {e}")
 
 # Only connect when runserver actually starts
 if os.environ.get("RUN_MAIN") == "true":

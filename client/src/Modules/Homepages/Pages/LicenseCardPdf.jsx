@@ -162,6 +162,11 @@ export default function LicenseCardPdf({ license = {} }) {
                 <span style={{ fontSize: 11, fontWeight: 700, color: "#1e293b" }}>{license.phone || "9xxxxxxxxx"}</span>
               </div>
 
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ width: 80, fontSize: 10, fontWeight: 700, color: BRAND_BLUE, textTransform: "uppercase" }}>Constituency</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: "#1e293b", textTransform: "uppercase" }}>{license.constituency || "Unknown"}</span>
+              </div>
+
               <div style={{ display: "flex", alignItems: "flex-start" }}>
                 <span style={{ width: 80, fontSize: 10, fontWeight: 700, color: BRAND_BLUE, textTransform: "uppercase" }}>Address</span>
                 <span style={{ flex: 1, fontSize: 10, fontWeight: 600, color: "#1e293b", lineHeight: 1.3, textTransform: "uppercase" }}>

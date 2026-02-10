@@ -11,6 +11,7 @@ class License(models.Model):
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True, null=True)
     education = models.CharField(max_length=150, blank=True, null=True)
+    constituency = models.CharField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=15, unique=True)
     address = models.TextField()
     photo = models.ImageField(upload_to="licenses/photos/", blank=True, null=True)

@@ -8,9 +8,8 @@ export const translations = {
       about: "About",
       Ourteam: "Our Team",
       OurteamMenu: {
-        executivecommittee: "Executive Committee",
-        general: "General",
-        action: "Action"
+        officeBearer: "Office Bearer",
+        executivecommittee: "Executive Committee"
       },
       gallery: "Gallery",
       blog: "Events",
@@ -61,9 +60,8 @@ export const translations = {
       about: "எங்களை பற்றி",
       Ourteam: "எங்கள் குழு",
       OurteamMenu: {
-        executivecommittee: " செயற்குழு",
-        general: " பொது",
-        action: "(எடுக்கப்பட்ட நடவடிக்கை அறிக்கை"
+        officeBearer: "தலைமைக் குழு",
+        executivecommittee: "செயற்குழு"
       },
       gallery: "காட்சியகம்",
       blog: "நிகழ்வுகள்",

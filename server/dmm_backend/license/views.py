@@ -75,6 +75,7 @@ class dmmViewSet(viewsets.ViewSet):
             "name": data.get("name"),
             "gender": data.get("gender"),
             "education": data.get("education"),
+            "constituency": data.get("constituency"),
             "phone": phone,
             "address": data.get("address"),
             "photo": request.build_absolute_uri(f"/media/{photo_path}") if photo_path else None,

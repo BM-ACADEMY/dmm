@@ -30,9 +30,11 @@ const Footer = () => {
   const menuItems = [
     { name: navTranslations.nav.home, path: "/" },
     { name: navTranslations.nav.about, path: "/about" },
+    { name: navTranslations.nav.Ourteam, path: "/our-team" },
     { name: navTranslations.nav.gallery, path: "/gallery" },
     { name: navTranslations.nav.blog, path: "/blog" },
     { name: navTranslations.nav.contact, path: "/contact" },
+    { name: navTranslations.nav.downloadId, path: "/license/download" },
   ];
 
   const socialLinks = [

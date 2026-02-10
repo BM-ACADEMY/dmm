@@ -29,7 +29,7 @@ const NAV_ITEMS = [
     id: 'Our Team',
     path: PATHS.OUR_TEAM,
     transKey: 'Ourteam',
-    subMenu: ['executivecommittee', 'general', 'action']
+    subMenu: ['officeBearer', 'executivecommittee']
   },
   { id: 'Gallery', path: PATHS.GALLERY, transKey: 'gallery' },
   { id: 'Blog', path: PATHS.BLOG, transKey: 'blog' },

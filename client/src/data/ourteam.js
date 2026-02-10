@@ -1,62 +1,158 @@
 export const teamData = {
   en: {
     title: "Our Team",
-    subtitle: "Dedicated leaders working for social justice and public welfare.",
+    subtitle: "Dedicated leadership working for social justice and public welfare.",
     members: [
       {
         id: 1,
-        name: "Mr. David Joseph",
-        role: "Social Service Specialist",
-        bio: "Mr. David Joseph has been actively engaged in social service for the past 15 years. He has worked in the areas of education, health, women’s rehabilitation, children’s education and development, guidance for women’s employment, and the protection of women’s rights."
+        name: "Swaminathan",
+        role: "President",
+        bio: "President of the organization, dedicated to social justice and welfare."
       },
       {
         id: 2,
-        name: "Ms. A. Banumathi",
-        role: "Human Rights Activist",
-        bio: "Ms. A. Banumathi has had a deep interest in social service from a young age and has been actively involved in social work for the past 19 years. During this period, she worked for 11 years with a Human Rights Protection Organisation and contested from the Villianur constituency in 2021."
+        name: "Dr. Q. Innacy Rock",
+        role: "General Secretary",
+        bio: "General Secretary of the organization."
       },
       {
         id: 3,
-        name: "Mr. K. Jebin Lazarus",
-        role: "Advocate & Activist",
-        bio: "An advocate with over 15 years experience opposing corruption through the Puducherry Legal Panchayat Movement. He serves as a Member of the Central Animal Welfare Board and General Secretary of the Puvi Foundation, having notably donated blood 67 times."
+        name: "Jebin Lazarus",
+        role: "Vice President",
+        bio: "Vice President of the organization."
       },
       {
         id: 4,
-        name: "Mr. G. Rajesh",
-        role: "Youth Wing Leader",
-        bio: "A committed social activist since 2011, he founded a humanitarian trust that redistributes surplus food to orphanages and the homeless in Puducherry. He has led major relief efforts during floods, cyclones, and the COVID-19 pandemic."
-      }
+        name: "Suresh Kumar",
+        role: "Treasurer",
+        bio: "Treasurer of the organization."
+      },
+      {
+        id: 5,
+        name: "DRS. Babu",
+        role: "General Secretary",
+        bio: "General Secretary of the organization."
+      },
+      {
+        id: 6,
+        name: "A. Banumathi",
+        role: "Vice President",
+        bio: "Vice President of the organization."
+      },
+      {
+        id: 7,
+        name: "G. Rajesh",
+        role: "Vice President",
+        bio: "Vice President of the organization."
+      },
+      {
+        id: 8,
+        name: "Yvone Christine",
+        role: "Secretary",
+        bio: "Secretary of the organization."
+      },
+      {
+        id: 9,
+        name: "D. Regina Mary",
+        role: "Secretary",
+        bio: "Secretary of the organization."
+      },
+      {
+        id: 10,
+        name: "Aarumugam",
+        role: "Secretary",
+        bio: "Secretary of the organization."
+      },
+      {
+        id: 11,
+        name: "Vimal",
+        role: "Joint Secretary",
+        bio: "Joint Secretary of the organization."
+      },
+      // {
+      //   id: 12,
+      //   name: "B. Kamarudeen",
+      //   role: "IT Wing Secretary",
+      //   bio: "IT Wing Secretary of the organization."
+      // }
     ]
   },
   ta: {
     title: "எங்கள் குழு",
-    subtitle: "சமூக நீதி மற்றும் பொது நலனுக்காக அர்ப்பணிப்புடன் பணியாற்றும் தலைவர்கள்.",
+    subtitle: "சமூக நீதி மற்றும் பொது நலனுக்காக அர்ப்பணிப்புடன் பணியாற்றும் தலைவர்.",
     members: [
       {
         id: 1,
-        name: "திரு. டேவிட் ஜோசப்",
-        role: "சமூக சேவை நிபுணர்",
-        bio: "திரு. டேவிட் ஜோசப் கடந்த 15 ஆண்டுகளாக கல்வி, சுகாதாரம், பெண்களின் மறுவாழ்வு, குழந்தைகளின் கல்வி மற்றும் வளர்ச்சி ஆகிய துறைகளில் சமூக சேவையில் தொடர்ந்து ஈடுபட்டு வருகிறார்."
+        name: "சுவாமிநாதன்",
+        role: "தலைவர்",
+        bio: "அமைப்பின் தலைவர், சமூக நீதி மற்றும் நலனுக்காக அர்ப்பணிப்புடன் செயல்படுகிறார்."
       },
       {
         id: 2,
-        name: "திருமிகு A. பானுமதி",
-        role: "மனித உரிமைகள் ஆர்வலர்",
-        bio: "கடந்த 19 ஆண்டுகளாக சமூகப் பணிகளில் ஈடுபட்டுள்ளார். இதில், 11 ஆண்டுகள் மனித உரிமைகள் பாதுகாப்பு கழகத்தின் மூலம் செயல்பட்டுள்ளார். மக்களின் உரிமைகள் மற்றும் சமூக நீதிக்காக தொடர்ந்து பணியாற்றி வருகிறார்."
+        name: "Dr. Q. என்னாசி ராக்",
+        role: "பொதுச் செயலாளர்",
+        bio: "அமைப்பின் பொதுச் செயலாளர்."
       },
       {
         id: 3,
-        name: "திரு. கி. ஜெபின் லாசரஸ்",
-        role: "வழக்கறிஞர் மற்றும் ஆர்வலர்",
-        bio: "வழக்கறிஞர், ஊழலுக்கு எதிராக 15 ஆண்டுகளாக போராடி வருகிறார். மத்திய விலங்கு நல ஆணையத்தின் உறுப்பினராகவும், புவி பவுண்டேஷனின் பொதுச் செயலாளராகவும் பணியாற்றி இதுவரை 67 முறை இரத்த தானம் செய்துள்ளார்."
+        name: "ஜெபின் லாசரஸ்",
+        role: "துணைத் தலைவர்",
+        bio: "அமைப்பின் துணைத் தலைவர்."
       },
       {
         id: 4,
-        name: "திரு. G. ராஜேஷ்",
-        role: "இலவச இளைஞரணி தலைவர்",
-        bio: "2011 முதல் மனித உரிமை மற்றும் சமூக முன்னேற்றப் பணிகளில் ஈடுபட்டுள்ளார். ஆதரவற்றோருக்கு உணவு வழங்கும் அறக்கட்டளையை நிறுவி பேரிடர் காலங்களில் நிவாரணப் பணிகளை முன்னின்று நடத்தியுள்ளார்."
-      }
+        name: "சுரேஷ் குமார்",
+        role: "பொருளாளர்",
+        bio: "அமைப்பின் பொருளாளர்."
+      },
+      {
+        id: 5,
+        name: "DRS. பாபு",
+        role: "பொதுச் செயலாளர்",
+        bio: "அமைப்பின் பொதுச் செயலாளர்."
+      },
+      {
+        id: 6,
+        name: "A. பானுமதி",
+        role: "துணைத் தலைவர்",
+        bio: "அமைப்பின் துணைத் தலைவர்."
+      },
+      {
+        id: 7,
+        name: "G. ராஜேஷ்",
+        role: "துணைத் தலைவர்",
+        bio: "அமைப்பின் துணைத் தலைவர்."
+      },
+      {
+        id: 8,
+        name: "இவோன் கிறிஸ்டின்",
+        role: "செயலாளர்",
+        bio: "அமைப்பின் செயலாளர்."
+      },
+      {
+        id: 9,
+        name: "D. ரெஜினா மேரி",
+        role: "செயலாளர்",
+        bio: "அமைப்பின் செயலாளர்."
+      },
+      {
+        id: 10,
+        name: "ஆறுமுகம்",
+        role: "செயலாளர்",
+        bio: "அமைப்பின் செயலாளர்."
+      },
+      {
+        id: 11,
+        name: "விமல்",
+        role: "துணைச் செயலாளர்",
+        bio: "அமைப்பின் துணைச் செயலாளர்."
+      },
+      // {
+      //   id: 12,
+      //   name: "B. கமருதீன்",
+      //   role: "தகவல் தொழில்நுட்ப பிரிவு செயலாளர்",
+      //   bio: "அமைப்பின் தகவல் தொழில்நுட்ப பிரிவு செயலாளர்."
+      // }
     ]
   }
 };

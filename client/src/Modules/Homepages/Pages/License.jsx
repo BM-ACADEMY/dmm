@@ -22,9 +22,9 @@ const CampaignBackground = () => (
 export default function License() {
   const [formData, setFormData] = useState({
     name: "",
-    aadhar_number: "",
     phone: "",
     address: "",
+    constituency: "",
     photo: null,
   });
 
@@ -73,11 +73,6 @@ export default function License() {
       }
       return;
     }
-    if (name === "aadhar_number") {
-      const cleanNumber = value.replace(/\D/g, "");
-      if (cleanNumber.length <= 12) setFormData((prev) => ({ ...prev, aadhar_number: cleanNumber }));
-      return;
-    }
     if (name === "photo") {
       const file = files?.[0] || null;
       setFormData((prev) => ({ ...prev, photo: file }));
@@ -88,16 +83,9 @@ export default function License() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const formatAadhar = (number) => {
-    if (!number) return '';
-    const parts = [];
-    for (let i = 0; i < number.length; i += 4) parts.push(number.substring(i, i + 4));
-    return parts.join('-');
-  };
-
   const validate = () => {
     if (!formData.name.trim()) return toast.error(t.messages.validation.name);
-    if (formData.aadhar_number.length !== 12) return toast.error(t.messages.validation.aadhar);
+    if (!formData.constituency) return toast.error(t.messages.validation.constituency);
     if (formData.phone.length !== 10) return toast.error(t.messages.validation.phone);
     if (phoneAvailable === false) return toast.error(t.messages.validation.phoneReg);
     if (!formData.address.trim()) return toast.error(t.messages.validation.address);
@@ -114,7 +102,8 @@ export default function License() {
     try {
       await axios.post(`${API_BASE_URL}/dmm/`, data, { headers: { "Content-Type": "multipart/form-data" } });
       toast.success(t.messages.success);
-      setFormData({ name: "", aadhar_number: "", phone: "", address: "", photo: null });
+      toast.success(t.messages.success);
+      setFormData({ name: "", phone: "", address: "", constituency: "", photo: null });
       if (previewUrl) URL.revokeObjectURL(previewUrl);
       setPreviewUrl(null);
       setPhoneMessage("");
@@ -201,22 +190,26 @@ export default function License() {
                 </div>
               </div>
 
-              {/* Row 2 */}
+              {/* Row 2 - Constituency & Photo */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {/* Aadhar Block */}
+                {/* Constituency Block */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-4">
-                    <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md"><FaIdCard size={18} /></div>
-                    <div>
-                      <p className={`text-[10px] text-gray-400 uppercase font-black tracking-widest ${isTamil ? 'font-tamil' : ''}`}>{t.labels.aadhar}</p>
-                      <input
-                        name="aadhar_number" value={formatAadhar(formData.aadhar_number)} onChange={handleChange} placeholder={t.placeholders.aadhar} maxLength={14}
-                        className="w-full border-b-2 border-slate-100 py-2 focus:border-[#0024f8] outline-none text-[#1a2b48] font-black text-lg tracking-widest"
-                      />
+                    <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md"><FaMapMarkerAlt size={18} /></div>
+                    <div className="flex-1">
+                      <p className={`text-[10px] text-gray-400 uppercase font-black tracking-widest ${isTamil ? 'font-tamil' : ''}`}>{t.labels.constituency}</p>
+                      <select
+                        name="constituency" value={formData.constituency} onChange={handleChange}
+                        className={`w-full border-b-2 border-slate-100 py-2 focus:border-[#0024f8] outline-none text-[#1a2b48] font-bold text-lg bg-transparent transition-all ${isTamil ? 'font-tamil' : ''}`}
+                      >
+                        <option value="">{t.placeholders.constituency}</option>
+                        {licenseData.constituencies.map((c) => (
+                          <option key={c.en} value={c.en}>{isTamil ? c.ta : c.en}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                 </div>
-
                 {/* Photo Block */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-4">
@@ -291,8 +284,8 @@ export default function License() {
 
                    <div className="w-full mt-6 space-y-3">
                       <div className="flex justify-between border-b border-slate-50 pb-1">
-                         <span className="text-[8px] text-slate-400 font-bold uppercase">Membership ID</span>
-                         <span className="text-[10px] text-[#1a2b48] font-black">{formatAadhar(formData.aadhar_number) || "XXXX-XXXX-XXXX"}</span>
+                         <span className="text-[8px] text-slate-400 font-bold uppercase">Constituency</span>
+                         <span className="text-[10px] text-[#1a2b48] font-black">{formData.constituency || "CONSTITUENCY"}</span>
                       </div>
                       <div className="flex justify-between border-b border-slate-50 pb-1">
                          <span className="text-[8px] text-slate-400 font-bold uppercase">Phone No</span>
