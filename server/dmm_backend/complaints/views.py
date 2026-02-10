@@ -29,8 +29,8 @@ class ComplaintViewSet(viewsets.ModelViewSet):
                 if settings.DEBUG:
                     print("✅ Complaint also saved to MongoDB")
             except Exception as e:
-                if settings.DEBUG:
-                    print(f"⚠️ Failed to save complaint in MongoDB: {e}")
+                # Log error but prevent crash so SQLite save is still successful for user
+                print(f"⚠️ Failed to save complaint in MongoDB (Ignored): {e}")
         else:
             if settings.DEBUG:
                 print("⚠️ MongoDB not connected. Complaint only saved in SQLite.")
