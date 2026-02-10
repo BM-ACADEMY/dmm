@@ -17,7 +17,7 @@ const HomepagesRoutes = () => {
       {/* <Bar /> */}
       <Hero />
       <PutsfSection />
-      <BlogHome />
+      <BlogHome limit={4}/>
       <StatsSection />
       <SocialMediaLinks />
       <Home />

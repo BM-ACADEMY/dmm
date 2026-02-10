@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useLanguage } from "../../../context/LanguageContext";
 import { blogData } from "../../../data/blog";
 
-const BlogHome = () => {
+const BlogHome = ({ limit }) => {
   const [blogs, setBlogs] = useState([]);
   const [expandedId, setExpandedId] = useState(null);
   const [error, setError] = useState("");
@@ -75,6 +75,9 @@ const BlogHome = () => {
     return new Date(dateString || Date.now()).toLocaleDateString(language === 'ta' ? 'ta-IN' : 'en-US', options);
   };
 
+  // Determine items to show
+  const displayBlogs = limit ? blogs.slice(0, limit) : blogs;
+
   return (
     <section className="relative w-full bg-[#f0f0f0] py-20 lg:py-28 overflow-hidden">
       <ToastContainer />
@@ -96,7 +99,7 @@ const BlogHome = () => {
                 {/* Vertical Blue Bar */}
                 <div className="w-1.5 h-10 bg-[#0024f8]"></div>
                 <span className={`text-[red] font-extrabold uppercase tracking-[0.2em] text-xs ${isTamil ? 'font-tamil' : ''}`}>
-                    {t.tag || "Latest Updates"}
+                    {limit ? (isTamil ? "சமீபத்திய" : "LATEST") : (t.tag || "Latest Updates")}
                 </span>
             </div>
             {/* Massive Geometric Title */}
@@ -108,7 +111,7 @@ const BlogHome = () => {
 
         {/* --- Card Grid from Reference --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-            {blogs.map((blog, index) => {
+            {displayBlogs.map((blog, index) => {
                 const isExpanded = expandedId === blog._id;
                 return (
                     <motion.div
@@ -176,6 +179,19 @@ const BlogHome = () => {
                 );
             })}
         </div>
+        
+        {/* --- View All Button (Only if limit is set) --- */}
+        {limit && blogs.length > limit && (
+          <div className="flex justify-center mt-12">
+            <a 
+              href="#/blog" 
+              className="inline-flex items-center gap-2 px-8 py-3 bg-[#0024f8] text-white font-bold uppercase tracking-widest rounded hover:bg-[#1a2b48] transition-colors"
+            >
+              {isTamil ? "எல்லாவற்றையும் பார்க்க" : "View All Events"}
+              <FaArrowRight />
+            </a>
+          </div>
+        )}
 
       </div>
     </section>

@@ -7,7 +7,7 @@ import { FaTimes, FaArrowLeft, FaArrowRight, FaPlay, FaVideo } from "react-icons
 import { useLanguage } from "../../../context/LanguageContext";
 import { galleryData } from "../../../data/gallery";
 
-const HomeGallery = () => {
+const HomeGallery = ({ limit }) => {
   const [items, setItems] = useState([]);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,6 +56,9 @@ const HomeGallery = () => {
     return { url, isVideo };
   };
 
+  // Determine items to show
+  const displayItems = limit ? items.slice(0, limit) : items;
+
   return (
     <section className="relative w-full bg-[#f0f0f0] py-20 lg:py-32 overflow-hidden">
       <style>
@@ -73,11 +76,11 @@ const HomeGallery = () => {
         {/* --- Header Section --- */}
         <div className="flex flex-col items-center text-center mb-16">
           <span className={`text-[#ff0000] font-extrabold uppercase tracking-[0.25em] text-[11px] md:text-xs mb-4 ${isTamil ? 'font-tamil' : ''}`}>
-            {t.sub || "Visual Journey"}
+            {limit ? (isTamil ? "சமீபத்திய" : "LATEST") : (t.sub || "Visual Journey")}
           </span>
 
           <h2 className={`text-4xl md:text-6xl font-black text-[#0024f8] leading-none ${isTamil ? 'font-tamil' : 'tracking-tighter'}`}>
-            {t.title}
+            {limit ? (isTamil ? "புகைப்படத்தொகுப்பு" : "GALLERY HIGHLIGHTS") : t.title}
           </h2>
 
           <div className="w-[1px] h-20 bg-[#0024f8]/10 mt-12"></div>
@@ -87,7 +90,7 @@ const HomeGallery = () => {
 
         {/* --- Grid Section --- */}
         <div className="flex flex-wrap items-center justify-center gap-6 max-w-7xl mx-auto">
-          {items.map((item, index) => {
+          {displayItems.map((item, index) => {
             const { url, isVideo } = getMediaInfo(item);
 
             return (
@@ -151,6 +154,20 @@ const HomeGallery = () => {
             );
           })}
         </div>
+        
+        {/* --- View All Button (Only if limit is set) --- */}
+        {limit && items.length > limit && (
+          <div className="flex justify-center mt-12">
+            <a 
+              href="#/gallery" 
+              className="inline-flex items-center gap-2 px-8 py-3 bg-[#0024f8] text-white font-bold uppercase tracking-widest rounded hover:bg-[#1a2b48] transition-colors"
+            >
+              {isTamil ? "எல்லாவற்றையும் பார்க்க" : "View All Gallery"}
+              <FaArrowRight />
+            </a>
+          </div>
+        )}
+
       </div>
 
       {/* --- Lightbox Section --- */}
