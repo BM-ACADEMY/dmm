@@ -265,8 +265,7 @@ export default function License() {
                       <img src={logo} alt="dmm" className="w-full h-full object-cover" />
                    </div>
                    <div className="flex-1">
-                      <h4 className="text-[10px] font-black text-[#1a2b48] leading-none uppercase">dmm Membership</h4>
-                      <p className="text-[7px] text-[#0024f8] font-bold uppercase tracking-widest mt-0.5">National People's Front</p>
+                       <p className="text-[7px] text-[#0024f8] font-bold uppercase tracking-widest mt-0.5">National People's Front</p>
                    </div>
                    <FaIdBadge className="text-[#1a2b48]/10 text-3xl" />
                 </div>
@@ -278,9 +277,7 @@ export default function License() {
                    <h2 className={`text-xl font-black text-[#1a2b48] text-center uppercase ${isTamil ? 'font-tamil' : ''}`}>
                       {formData.name || "MEMBER NAME"}
                    </h2>
-                   <div className="bg-[#ff0000] text-white text-[8px] font-black px-3 py-1 rounded-full mt-2 uppercase tracking-widest">
-                      {t.card.designation}
-                   </div>
+
 
                    <div className="w-full mt-6 space-y-3">
                       <div className="flex justify-between border-b border-slate-50 pb-1">

@@ -152,9 +152,7 @@ export default function LicenseCardPdf({ license = {} }) {
               {license.name || "Member Name"}
             </h2>
 
-            <div style={{ background: BRAND_RED, padding: "3px 12px", borderRadius: "50px", marginBottom: 18, width: "fit-content" }}>
-              <p style={{ margin: 0, color: "#ffffff", fontSize: 8, fontWeight: 900, textTransform: "uppercase" }}>Official Member</p>
-            </div>
+
 
             <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -187,9 +185,6 @@ export default function LicenseCardPdf({ license = {} }) {
 
         {/* --- FOOTER --- */}
         <div style={{ width: "100%", height: 28, background: BRAND_RED, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 10 }}>
-            <p style={{ margin: 0, color: "#ffffff", fontSize: 8, fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px" }}>
-                Identification Membership Card
-            </p>
         </div>
       </div>
 
