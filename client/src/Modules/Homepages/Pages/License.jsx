@@ -84,12 +84,12 @@ export default function License() {
   };
 
   const validate = () => {
-    if (!formData.name.trim()) return toast.error(t.messages.validation.name);
-    if (!formData.constituency) return toast.error(t.messages.validation.constituency);
-    if (formData.phone.length !== 10) return toast.error(t.messages.validation.phone);
-    if (phoneAvailable === false) return toast.error(t.messages.validation.phoneReg);
-    if (!formData.address.trim()) return toast.error(t.messages.validation.address);
-    if (!formData.photo) return toast.error(t.messages.validation.photo);
+    if (!formData.name.trim()) { toast.error(t.messages.validation.name); return false; }
+    if (!formData.constituency) { toast.error(t.messages.validation.constituency); return false; }
+    if (formData.phone.length !== 10) { toast.error(t.messages.validation.phone); return false; }
+    if (phoneAvailable === false) { toast.error(t.messages.validation.phoneReg); return false; }
+    if (!formData.address.trim()) { toast.error(t.messages.validation.address); return false; }
+    if (!formData.photo) { toast.error(t.messages.validation.photo); return false; }
     return true;
   };
 
