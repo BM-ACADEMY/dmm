@@ -13,8 +13,8 @@ export const contactData = {
     // ----------------------------
     address: {
       title: "Headquarters",
-      line1: "NO1, 2nd Cross, Pothigai Nagar, Nawarkulam,",
-      line2: "Lawspet Post, Puducherry – 605008"
+      line1: "200, 1A, First Floor, Poongavanam Complex,",
+      line2: "Kamaraj Salai, Pondicherry - 605013"
     },
     email: {
       title: "Email Us",
@@ -45,8 +45,8 @@ export const contactData = {
     // ----------------------------
     address: {
       title: "தலைமையகம்",
-      line1: "எண் 1, 2வது குறுக்குத் தெரு, பொதிகை நகர், நாவற்குளம்,",
-      line2: "லாஸ்பேட்டை போஸ்ட், புதுச்சேரி – 605008"
+      line1: "200, 1A, முதல் தளம், பூங்காவனம் காம்ப்ளக்ஸ்,",
+      line2: "காமராஜர் சாலை, புதுச்சேரி - 605013"
     },
     email: {
       title: "மின்னஞ்சல்",

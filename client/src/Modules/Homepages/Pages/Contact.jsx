@@ -151,7 +151,7 @@ const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="dmm Location"
-              className="grayscale-[0.8] group-hover:grayscale-0 transition-all duration-1000"
+              className="transition-all duration-1000"
             ></iframe>
             <div className="absolute top-8 right-8 bg-white/95 backdrop-blur-md px-5 py-3 rounded-xl shadow-xl border-l-4 border-[#0024f8]">
                 <div className="flex items-center gap-3">
