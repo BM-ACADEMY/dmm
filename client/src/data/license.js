@@ -6,7 +6,8 @@ export const licenseData = {
     activeStatus: "Active",
     labels: {
       name: "Full Name",
-      aadhar: "Aadhar Number",
+      father_husband_name: "Father / Husband Name",
+      date_of_joining: "Date of Joining",
       phone: "Phone Number",
       address: "Residential Address",
       constituency: "Constituency",
@@ -14,6 +15,8 @@ export const licenseData = {
     },
     placeholders: {
       name: "Enter your full name",
+      father_husband_name: "Enter father or husband's name",
+      date_of_joining: "YYYY-MM-DD",
       aadhar: "XXXX-XXXX-XXXX",
       phone: "10-digit mobile number",
       address: "Street, City, District, Pincode",
@@ -27,7 +30,8 @@ export const licenseData = {
       serverError: "Server error checking number",
       validation: {
         name: "Enter full name",
-        aadhar: "Aadhar number must be 12 digits",
+        father_husband_name: "Enter father or husband name",
+        date_of_joining: "Select joining date",
         phone: "Enter 10-digit phone number",
         phoneReg: "Phone already registered!",
         address: "Enter address",
@@ -55,7 +59,8 @@ export const licenseData = {
     activeStatus: "செயலில்",
     labels: {
       name: "முழு பெயர்",
-      aadhar: "ஆதார் எண்",
+      father_husband_name: "தந்தை / கணவர் பெயர்",
+      date_of_joining: "சேர்ந்த தேதி",
       phone: "கைபேசி எண்",
       address: "வீட்டு முகவரி",
       constituency: "தொகுதி",
@@ -63,6 +68,8 @@ export const licenseData = {
     },
     placeholders: {
       name: "உங்கள் முழு பெயரை உள்ளிடவும்",
+      father_husband_name: "தந்தை அல்லது கணவர் பெயரை உள்ளிடவும்",
+      date_of_joining: "YYYY-MM-DD",
       aadhar: "XXXX-XXXX-XXXX",
       phone: "10 இலக்க எண்",
       address: "தெரு, ஊர், மாவட்டம், அஞ்சல் குறியீடு",
@@ -76,7 +83,8 @@ export const licenseData = {
       serverError: "சரிபார்ப்பில் பிழை",
       validation: {
         name: "முழு பெயரை உள்ளிடவும்",
-        aadhar: "ஆதார் எண் 12 இலக்கங்களாக இருக்க வேண்டும்",
+        father_husband_name: "தந்தை அல்லது கணவர் பெயரை உள்ளிடவும்",
+        date_of_joining: "சேர்ந்த தேதியைத் தேர்ந்தெடுக்கவும்",
         phone: "10 இலக்க கைபேசி எண்ணை உள்ளிடவும்",
         phoneReg: "எண் ஏற்கனவே பதிவு செய்யப்பட்டுள்ளது!",
         address: "முகவரியை உள்ளிடவும்",

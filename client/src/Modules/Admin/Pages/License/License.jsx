@@ -51,13 +51,15 @@ export default function LicenseAdmin() {
     const filtered = licenses.filter((item) => {
       // Safely convert fields to string before checking
       const name = String(item.name || "").toLowerCase();
+      const father_husband_name = String(item.father_husband_name || "").toLowerCase();
+      const constituency = String(item.constituency || "").toLowerCase();
       const phone = String(item.phone || "");
-      const aadhar = String(item.aadhar_number || "");
 
       return (
         name.includes(lowerTerm) ||
-        phone.includes(searchTerm) ||
-        aadhar.includes(searchTerm)
+        father_husband_name.includes(lowerTerm) ||
+        constituency.includes(lowerTerm) ||
+        phone.includes(searchTerm)
       );
     });
 
@@ -155,7 +157,11 @@ export default function LicenseAdmin() {
                         </div>
                         <div>
                           <p className="font-bold text-slate-800">{item.name || "Unknown Name"}</p>
-                          <p className="text-xs text-slate-500">ID: {item.aadhar_number || "N/A"}</p>
+                          <p className="text-[10px] text-slate-500 font-semibold uppercase">F/H: {item.father_husband_name || "N/A"}</p>
+                          <div className="flex gap-2 mt-1">
+                            <p className="text-[10px] text-slate-400 bg-slate-100 px-1.5 rounded">Joined: {item.date_of_joining || "N/A"}</p>
+                            <p className="text-[10px] text-[#0056b3] bg-blue-50 px-1.5 rounded font-bold uppercase">{item.constituency || "No Area"}</p>
+                          </div>
                         </div>
                       </div>
                     </td>

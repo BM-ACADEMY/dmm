@@ -22,6 +22,8 @@ const CampaignBackground = () => (
 export default function License() {
   const [formData, setFormData] = useState({
     name: "",
+    father_husband_name: "",
+    date_of_joining: new Date().toISOString().split('T')[0],
     phone: "",
     address: "",
     constituency: "",
@@ -84,11 +86,13 @@ export default function License() {
   };
 
   const validate = () => {
-    if (!formData.name.trim()) { toast.error(t.messages.validation.name); return false; }
+    if (!(formData.name || "").trim()) { toast.error(t.messages.validation.name); return false; }
+    if (!(formData.father_husband_name || "").trim()) { toast.error(t.messages.validation.father_husband_name); return false; }
+    if (!formData.date_of_joining) { toast.error(t.messages.validation.date_of_joining); return false; }
     if (!formData.constituency) { toast.error(t.messages.validation.constituency); return false; }
-    if (formData.phone.length !== 10) { toast.error(t.messages.validation.phone); return false; }
+    if ((formData.phone || "").length !== 10) { toast.error(t.messages.validation.phone); return false; }
     if (phoneAvailable === false) { toast.error(t.messages.validation.phoneReg); return false; }
-    if (!formData.address.trim()) { toast.error(t.messages.validation.address); return false; }
+    if (!(formData.address || "").trim()) { toast.error(t.messages.validation.address); return false; }
     if (!formData.photo) { toast.error(t.messages.validation.photo); return false; }
     return true;
   };
@@ -103,7 +107,15 @@ export default function License() {
       await axios.post(`${API_BASE_URL}/dmm/`, data, { headers: { "Content-Type": "multipart/form-data" } });
       toast.success(t.messages.success);
       toast.success(t.messages.success);
-      setFormData({ name: "", phone: "", address: "", constituency: "", photo: null });
+      setFormData({ 
+        name: "", 
+        father_husband_name: "", 
+        date_of_joining: new Date().toISOString().split('T')[0], 
+        phone: "", 
+        address: "", 
+        constituency: "", 
+        photo: null 
+      });
       if (previewUrl) URL.revokeObjectURL(previewUrl);
       setPreviewUrl(null);
       setPhoneMessage("");
@@ -153,9 +165,8 @@ export default function License() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-10">
-              {/* Row 1 */}
+              {/* Row 1: Name & Father/Husband Name */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {/* Name Block */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-4">
                     <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md"><FaUser size={18} /></div>
@@ -169,7 +180,35 @@ export default function License() {
                   </div>
                 </div>
 
-                {/* Phone Block */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md"><FaUser size={18} /></div>
+                    <div>
+                      <p className={`text-[10px] text-gray-400 uppercase font-black tracking-widest ${isTamil ? 'font-tamil' : ''}`}>{t.labels.father_husband_name}</p>
+                      <input
+                        name="father_husband_name" value={formData.father_husband_name} onChange={handleChange} placeholder={t.placeholders.father_husband_name}
+                        className={`w-full border-b-2 border-slate-100 py-2 focus:border-[#0024f8] outline-none text-[#1a2b48] font-bold text-lg transition-all ${isTamil ? 'font-tamil' : ''}`}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Row 2: Date and Phone */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md"><FaIdCard size={18} /></div>
+                    <div className="flex-1">
+                      <p className={`text-[10px] text-gray-400 uppercase font-black tracking-widest ${isTamil ? 'font-tamil' : ''}`}>{t.labels.date_of_joining}</p>
+                      <input
+                        type="date" name="date_of_joining" value={formData.date_of_joining} onChange={handleChange}
+                        className={`w-full border-b-2 border-slate-100 py-2 focus:border-[#0024f8] outline-none text-[#1a2b48] font-bold text-lg transition-all ${isTamil ? 'font-tamil' : ''}`}
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <div className="space-y-3">
                   <div className="flex items-center gap-4">
                     <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md"><FaPhoneAlt size={18} /></div>
@@ -190,9 +229,8 @@ export default function License() {
                 </div>
               </div>
 
-              {/* Row 2 - Constituency & Photo */}
+              {/* Row 3: Constituency & Photo */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {/* Constituency Block */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-4">
                     <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md"><FaMapMarkerAlt size={18} /></div>
@@ -210,7 +248,7 @@ export default function License() {
                     </div>
                   </div>
                 </div>
-                {/* Photo Block */}
+
                 <div className="space-y-3">
                   <div className="flex items-center gap-4">
                     <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md"><FaUpload size={18} /></div>
@@ -227,7 +265,7 @@ export default function License() {
                 </div>
               </div>
 
-              {/* Address Block */}
+              {/* Row 4: Address */}
               <div className="space-y-3">
                 <div className="flex items-start gap-4">
                   <div className="bg-[#0024f8] p-2.5 rounded-sm text-white shadow-md mt-1"><FaMapMarkerAlt size={18} /></div>
@@ -250,6 +288,7 @@ export default function License() {
                 <span className={isTamil ? 'font-tamil text-lg' : ''}>{submitting ? t.buttons.submitting : t.buttons.submit}</span>
               </button>
             </form>
+
           </div>
         </div>
 
@@ -258,41 +297,67 @@ export default function License() {
           <div className="bg-[#1a2b48] rounded-sm p-8 shadow-2xl relative border-t-4 border-[#ff0000]">
              <h3 className={`text-white text-xs font-black uppercase tracking-widest mb-8 text-center ${isTamil ? 'font-tamil' : ''}`}>{t.previewTitle}</h3>
 
-             {/* Actual Card Mockup */}
-             <div className="bg-white rounded-lg shadow-inner overflow-hidden border border-slate-200">
-                <div className="bg-slate-50 p-4 flex items-center gap-3 border-b border-slate-100">
-                   <div className="w-10 h-10 rounded-full bg-white border border-slate-200 p-0.5 overflow-hidden shadow-sm">
-                      <img src={logo} alt="dmm" className="w-full h-full object-cover" />
-                   </div>
-                   <div className="flex-1">
-                       <p className="text-[7px] text-[#0024f8] font-bold uppercase tracking-widest mt-0.5">National People's Front</p>
-                   </div>
-                   <FaIdBadge className="text-[#1a2b48]/10 text-3xl" />
+             {/* Actual Card Mockup using membership.jpeg */}
+             <div 
+               className="relative mx-auto rounded-lg shadow-2xl overflow-hidden bg-white"
+               style={{ 
+                 width: "100%", 
+                 aspectRatio: "540 / 340",
+                 backgroundImage: "url('/membership/membership.jpeg')",
+                 backgroundSize: "cover",
+                 backgroundPosition: "center"
+               }}
+             >
+                {/* Member Photo Overlay */}
+                <div 
+                  className="absolute bg-slate-100 overflow-hidden"
+                  style={{ 
+                    top: "38.5%", 
+                    left: "4.8%", 
+                    width: "21.5%", 
+                    height: "36%",
+                    borderRadius: "4px"
+                  }}
+                >
+                   {previewUrl ? (
+                     <img src={previewUrl} className="w-full h-full object-cover" alt="Member" />
+                   ) : (
+                     <div className="w-full h-full flex items-center justify-center text-slate-300">
+                       <FaUser size={30} />
+                     </div>
+                   )}
                 </div>
 
-                <div className="p-6 flex flex-col items-center">
-                   <div className="w-28 h-28 bg-slate-50 rounded-sm border-2 border-slate-100 shadow-md mb-4 overflow-hidden flex items-center justify-center">
-                      {previewUrl ? <img src={previewUrl} className="w-full h-full object-cover" /> : <FaUser className="text-slate-200 text-4xl" />}
+                {/* Details Overlay - VALUES ONLY, aligned to background labels */}
+                <div 
+                  className="absolute text-[8px] font-black space-y-[5.8px]"
+                  style={{ 
+                    top: "48.2%", 
+                    left: "48.5%", 
+                    width: "48%",
+                    color: "#000"
+                  }}
+                >
+                   <div className="h-[14px] flex items-center">
+                      <span className="uppercase truncate">{formData.name || ""}</span>
                    </div>
-                   <h2 className={`text-xl font-black text-[#1a2b48] text-center uppercase ${isTamil ? 'font-tamil' : ''}`}>
-                      {formData.name || "MEMBER NAME"}
-                   </h2>
-
-
-                   <div className="w-full mt-6 space-y-3">
-                      <div className="flex justify-between border-b border-slate-50 pb-1">
-                         <span className="text-[8px] text-slate-400 font-bold uppercase">Constituency</span>
-                         <span className="text-[10px] text-[#1a2b48] font-black">{formData.constituency || "CONSTITUENCY"}</span>
-                      </div>
-                      <div className="flex justify-between border-b border-slate-50 pb-1">
-                         <span className="text-[8px] text-slate-400 font-bold uppercase">Phone No</span>
-                         <span className="text-[10px] text-[#1a2b48] font-black">{formData.phone || "9999999999"}</span>
-                      </div>
+                   <div className="h-[14px] flex items-center">
+                      <span className="uppercase truncate">{formData.father_husband_name || ""}</span>
+                   </div>
+                   <div className="h-[14px] flex items-center">
+                      <span className="uppercase truncate">{formData.date_of_joining || ""}</span>
+                   </div>
+                   <div className="h-[14px] flex items-center">
+                      <span className="uppercase truncate">{formData.constituency || ""}</span>
+                   </div>
+                   <div className="h-[14px] flex items-center">
+                      <span className="uppercase truncate">{formData.phone || ""}</span>
+                   </div>
+                   <div className="h-[20px] flex items-start pt-[2px]">
+                      <span className="uppercase text-[6.5px] leading-[1.0] line-clamp-2">{formData.address || ""}</span>
                    </div>
                 </div>
-                <div className="bg-[#1a2b48] py-2 text-center">
-                   <p className={`text-[7px] text-white/50 font-bold uppercase tracking-widest ${isTamil ? 'font-tamil' : ''}`}>{t.card.footer}</p>
-                </div>
+
              </div>
 
              <div className="mt-6 p-4 bg-white/5 rounded-sm">

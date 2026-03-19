@@ -15,16 +15,43 @@ class dmmViewSet(viewsets.ViewSet):
     http_method_names = ["get", "post", "delete"]
 
     # ----------------------------------------------------
+    # HELPERS
+    # ----------------------------------------------------
+    def _flatten_doc(self, doc):
+        """Normalize MongoDB document fields."""
+        if not doc:
+            return doc
+        
+        # Convert ObjectId to string
+        if "_id" in doc:
+            doc["_id"] = str(doc["_id"])
+        
+        # Flatten any list-type fields (legacy data fix)
+        # and handle missing fields with defaults
+        fields_to_check = [
+            "name", "father_husband_name", "date_of_joining", 
+            "constituency", "phone", "address"
+        ]
+        
+        for field in fields_to_check:
+            val = doc.get(field)
+            if isinstance(val, list):
+                doc[field] = val[0] if val else ""
+            elif val is None:
+                doc[field] = ""
+        
+        return doc
+
+    # ----------------------------------------------------
     # LIST ALL
     # ----------------------------------------------------
     def list(self, request):
         if dmm_collection is None:
             return Response({"error": "MongoDB not connected"}, status=503)
 
-        data = list(dmm_collection.find())
-        for item in data:
-            item["_id"] = str(item["_id"])
-        return Response(data)
+        data = list(dmm_collection.find().sort("_id", -1)) # Sort newest first
+        flattened_data = [self._flatten_doc(item) for item in data]
+        return Response(flattened_data)
 
     # ----------------------------------------------------
     # RETRIEVE SINGLE
@@ -41,8 +68,7 @@ class dmmViewSet(viewsets.ViewSet):
         if not doc:
             return Response({"error": "Record not found"}, status=404)
 
-        doc["_id"] = str(doc["_id"])
-        return Response(doc)
+        return Response(self._flatten_doc(doc))
 
     # ----------------------------------------------------
     # CREATE MEMBER
@@ -51,7 +77,7 @@ class dmmViewSet(viewsets.ViewSet):
         if dmm_collection is None:
             return Response({"error": "MongoDB not connected"}, status=503)
 
-        data = dict(request.data)
+        data = request.data
         phone = data.get("phone")
 
         if not phone:
@@ -73,8 +99,8 @@ class dmmViewSet(viewsets.ViewSet):
 
         member_doc = {
             "name": data.get("name"),
-            "gender": data.get("gender"),
-            "education": data.get("education"),
+            "father_husband_name": data.get("father_husband_name"),
+            "date_of_joining": data.get("date_of_joining"),
             "constituency": data.get("constituency"),
             "phone": phone,
             "address": data.get("address"),
@@ -114,6 +140,8 @@ class dmmViewSet(viewsets.ViewSet):
 
         if not doc:
             return Response({"error": "Record not found"}, status=404)
+
+        doc = self._flatten_doc(doc)
 
         # Uploaded file
         pdf_file = request.FILES.get("pdf_file")
@@ -195,6 +223,8 @@ class dmmViewSet(viewsets.ViewSet):
 
         if not doc:
             return Response({"error": "Record not found"}, status=404)
+        
+        doc = self._flatten_doc(doc)
 
         if not doc.get("is_approved"):
             return Response({"error": "Certificate not approved yet"}, status=400)

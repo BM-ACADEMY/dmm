@@ -9,6 +9,8 @@ class License(models.Model):
     )
 
     name = models.CharField(max_length=100)
+    father_husband_name = models.CharField(max_length=100, blank=True, null=True)
+    date_of_joining = models.DateField(blank=True, null=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True, null=True)
     education = models.CharField(max_length=150, blank=True, null=True)
     constituency = models.CharField(max_length=100, blank=True, null=True)

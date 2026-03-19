@@ -188,11 +188,11 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-MEDIA_URL = "https://api.dmmparty.com/media/"
-
 if DEBUG:
+    MEDIA_URL = "/media/"
     MEDIA_ROOT = BASE_DIR / "media"
 else:
+    MEDIA_URL = "https://api.dmmparty.com/media/"
     MEDIA_ROOT = "/var/www/dmm_media"
 
 
