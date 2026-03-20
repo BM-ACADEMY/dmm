@@ -2,7 +2,7 @@ from urllib.parse import quote_plus
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from bson import ObjectId
 from dmm_backend.mongo import db
 from django.core.files.storage import default_storage
@@ -223,7 +223,7 @@ class dmmViewSet(viewsets.ViewSet):
 
         if not doc:
             return Response({"error": "Record not found"}, status=404)
-        
+
         doc = self._flatten_doc(doc)
 
         if not doc.get("is_approved"):
@@ -233,12 +233,4 @@ class dmmViewSet(viewsets.ViewSet):
         if not pdf_url:
             return Response({"error": "Certificate file missing"}, status=404)
 
-        try:
-            rel_path = pdf_url.split("/media/")[-1]
-            with default_storage.open(rel_path, "rb") as f:
-                response = HttpResponse(f.read(), content_type="application/pdf")
-                response["Content-Disposition"] = "attachment; filename=dmm_certificate.pdf"
-                return response
-
-        except:
-            return Response({"error": "Error reading certificate file"}, status=500)
+        return Response({"url": pdf_url})

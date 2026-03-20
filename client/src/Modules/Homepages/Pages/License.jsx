@@ -303,7 +303,7 @@ export default function License() {
                style={{ 
                  width: "100%", 
                  aspectRatio: "540 / 340",
-                 backgroundImage: "url('/membership/membership.jpeg')",
+                 backgroundImage: "url('/membership/membership.png')",
                  backgroundSize: "cover",
                  backgroundPosition: "center"
                }}
@@ -312,10 +312,10 @@ export default function License() {
                 <div 
                   className="absolute bg-slate-100 overflow-hidden"
                   style={{ 
-                    top: "38.5%", 
-                    left: "4.8%", 
-                    width: "21.5%", 
-                    height: "36%",
+                    top: "41.5%", 
+                    left: "3.5%", 
+                    width: "15.5%", 
+                    height: "30%",
                     borderRadius: "4px"
                   }}
                 >
@@ -330,31 +330,34 @@ export default function License() {
 
                 {/* Details Overlay - VALUES ONLY, aligned to background labels */}
                 <div 
-                  className="absolute text-[8px] font-black space-y-[5.8px]"
+                  className="absolute font-black"
                   style={{ 
-                    top: "48.2%", 
+                    top: "43.5%", 
                     left: "48.5%", 
                     width: "48%",
-                    color: "#000"
+                    color: "#000",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "5px"
                   }}
                 >
-                   <div className="h-[14px] flex items-center">
-                      <span className="uppercase truncate">{formData.name || ""}</span>
+                   <div className="h-[6px] flex items-center">
+                      <span className="uppercase text-[8px] truncate">{formData.name || ""}</span>
                    </div>
-                   <div className="h-[14px] flex items-center">
-                      <span className="uppercase truncate">{formData.father_husband_name || ""}</span>
+                   <div className="h-[6px] flex items-center">
+                      <span className="uppercase text-[8px] truncate">{formData.father_husband_name || ""}</span>
                    </div>
-                   <div className="h-[14px] flex items-center">
-                      <span className="uppercase truncate">{formData.date_of_joining || ""}</span>
+                   <div className="h-[6px] flex items-center">
+                      <span className="uppercase text-[8px] truncate">{formData.date_of_joining || ""}</span>
                    </div>
-                   <div className="h-[14px] flex items-center">
-                      <span className="uppercase truncate">{formData.constituency || ""}</span>
+                   <div className="h-[6px] flex items-center">
+                      <span className="uppercase text-[8px] truncate">{formData.constituency || ""}</span>
                    </div>
-                   <div className="h-[14px] flex items-center">
-                      <span className="uppercase truncate">{formData.phone || ""}</span>
+                   <div className="h-[6px] flex items-center">
+                      <span className="uppercase text-[8px] truncate">{formData.phone || ""}</span>
                    </div>
-                   <div className="h-[20px] flex items-start pt-[2px]">
-                      <span className="uppercase text-[6.5px] leading-[1.0] line-clamp-2">{formData.address || ""}</span>
+                   <div className="flex items-start" style={{ minHeight: "22px" }}>
+                      <span className="uppercase text-[8px] font-black leading-[1.3] whitespace-pre-wrap line-clamp-2 break-words w-full text-black">{formData.address || ""}</span>
                    </div>
                 </div>
 

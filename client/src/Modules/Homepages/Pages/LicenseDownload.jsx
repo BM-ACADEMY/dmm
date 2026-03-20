@@ -65,28 +65,27 @@ export default function MembershipDownload() {
 
     try {
       const res = await axios.get(`${API_URL}?phone=${cleanPhone}`, {
-        responseType: "blob",
         validateStatus: () => true
       });
       clearInterval(interval);
       setProgress(100);
 
-      if (res.status === 404 || res.status === 400) {
-        setErrorMsg(t.errors.notFound);
-        toast.error(t.errors.notFound);
-      } else if (res.status === 200) {
-        const url = window.URL.createObjectURL(new Blob([res.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "membership_certificate.pdf");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      if (res.status === 200 && res.data?.url) {
+        // Open the PDF URL directly — browser handles download
+        window.open(res.data.url, "_blank", "noopener,noreferrer");
         toast.success(t.success);
         setSuccessMsg(t.success);
+      } else if (res.status === 400) {
+        const msg = res.data?.error || t.errors.notApproved;
+        setErrorMsg(msg);
+        toast.error(msg);
+      } else if (res.status === 404) {
+        setErrorMsg(t.errors.notFound);
+        toast.error(t.errors.notFound);
       } else {
-        setErrorMsg(t.errors.notApproved);
-        toast.error(t.errors.notApproved);
+        const msg = res.data?.error || t.errors.server;
+        setErrorMsg(msg);
+        toast.error(msg);
       }
     } catch (error) {
       clearInterval(interval);
