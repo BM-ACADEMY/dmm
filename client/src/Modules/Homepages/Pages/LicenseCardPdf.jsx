@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import API from "../../../api";
 import { toast } from "react-toastify";
+import { formatDate, formatAddress } from "../../../utils/formatUtils";
 
 const membershipBg = "/membership/membership.png";
 
@@ -79,10 +80,10 @@ const buildPdf = async (license, bgBase64) => {
   const fields = [
     (license.name               || "").toUpperCase(),
     (license.father_husband_name|| "").toUpperCase(),
-    (license.date_of_joining    || ""),
+    (formatDate(license.date_of_joining) || ""),
     (license.constituency       || "").toUpperCase(),
     (license.phone              || ""),
-    (license.address            || "").toUpperCase(),
+    (formatAddress(license.address) || "").toUpperCase(),
   ];
 
   fields.forEach((val, i) => {
@@ -213,7 +214,7 @@ export default function LicenseCardPdf({ license = {} }) {
         >
           <div className="field-value">{license.name || ""}</div>
           <div className="field-value">{license.father_husband_name || ""}</div>
-          <div className="field-value">{license.date_of_joining || ""}</div>
+          <div className="field-value">{formatDate(license.date_of_joining) || ""}</div>
           <div className="field-value">{license.constituency || ""}</div>
           <div className="field-value">{license.phone || ""}</div>
           <div style={{
@@ -230,7 +231,7 @@ export default function LicenseCardPdf({ license = {} }) {
             whiteSpace: "pre-wrap",
             width: "55%", // Match the narrower wrap width
           }}>
-            {license.address || ""}
+            {formatAddress(license.address) || ""}
           </div>
         </div>
       </div>

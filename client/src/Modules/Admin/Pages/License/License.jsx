@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { formatDate, formatAddress } from "../../../../utils/formatUtils";
 
 export default function LicenseAdmin() {
   const API_URL = `/dmm/`;
@@ -159,7 +160,7 @@ export default function LicenseAdmin() {
                           <p className="font-bold text-slate-800">{item.name || "Unknown Name"}</p>
                           <p className="text-[10px] text-slate-500 font-semibold uppercase">F/H: {item.father_husband_name || "N/A"}</p>
                           <div className="flex gap-2 mt-1">
-                            <p className="text-[10px] text-slate-400 bg-slate-100 px-1.5 rounded">Joined: {item.date_of_joining || "N/A"}</p>
+                            <p className="text-[10px] text-slate-400 bg-slate-100 px-1.5 rounded">Joined: {formatDate(item.date_of_joining) || "N/A"}</p>
                             <p className="text-[10px] text-[#0056b3] bg-blue-50 px-1.5 rounded font-bold uppercase">{item.constituency || "No Area"}</p>
                           </div>
                         </div>
@@ -173,7 +174,7 @@ export default function LicenseAdmin() {
                           <Phone size={14} className="text-[#0056b3]" /> {item.phone || "N/A"}
                         </p>
                         <p className="text-xs text-slate-400 flex items-center gap-2 truncate max-w-[200px]" title={item.address}>
-                          <MapPin size={14} className="text-[#dc2626]" /> {item.address || "No Address"}
+                          <MapPin size={14} className="text-[#dc2626]" /> {formatAddress(item.address) || "No Address"}
                         </p>
                       </div>
                     </td>

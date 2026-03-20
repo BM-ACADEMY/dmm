@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 // ✅ Import Context and Data
 import { useLanguage } from "../../../context/LanguageContext";
 import { licenseData } from "../../../data/license";
+import { formatDate, formatAddress } from "../../../utils/formatUtils";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -105,7 +106,6 @@ export default function License() {
     Object.entries(formData).forEach(([k, v]) => data.append(k, v ?? ""));
     try {
       await axios.post(`${API_BASE_URL}/dmm/`, data, { headers: { "Content-Type": "multipart/form-data" } });
-      toast.success(t.messages.success);
       toast.success(t.messages.success);
       setFormData({ 
         name: "", 
@@ -348,7 +348,7 @@ export default function License() {
                       <span className="uppercase text-[8px] truncate">{formData.father_husband_name || ""}</span>
                    </div>
                    <div className="h-[6px] flex items-center">
-                      <span className="uppercase text-[8px] truncate">{formData.date_of_joining || ""}</span>
+                      <span className="uppercase text-[8px] truncate">{formatDate(formData.date_of_joining) || ""}</span>
                    </div>
                    <div className="h-[6px] flex items-center">
                       <span className="uppercase text-[8px] truncate">{formData.constituency || ""}</span>
@@ -357,7 +357,7 @@ export default function License() {
                       <span className="uppercase text-[8px] truncate">{formData.phone || ""}</span>
                    </div>
                    <div className="flex items-start" style={{ minHeight: "22px" }}>
-                      <span className="uppercase text-[8px] font-black leading-[1.3] whitespace-pre-wrap line-clamp-2 break-words w-full text-black">{formData.address || ""}</span>
+                      <span className="uppercase text-[8px] font-black leading-[1.3] whitespace-pre-wrap line-clamp-2 break-words w-full text-black">{formatAddress(formData.address) || ""}</span>
                    </div>
                 </div>
 
