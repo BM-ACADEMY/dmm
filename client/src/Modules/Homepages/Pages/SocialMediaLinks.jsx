@@ -88,18 +88,21 @@ const SocialMediaLinks = () => {
             title="Facebook"
             icon="📘"
             color="border-[#0024f8]"
-            buttonLink="https://www.facebook.com/profile.php?id=61586327415764"
+            buttonLink="https://www.facebook.com/people/Desiya-Makkal-Munnani/pfbid05iSFioidy4PmUaKhsuDm7zWu2cNT8Nvqo9GptMT2VpwiFyGZiFbUAQhNs1bTrGFvl/"
             buttonText="Follow"
             buttonColor="bg-[#0024f8]"
           >
-            <iframe
-              title="dmm Facebook"
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61586327415764&tabs=timeline&width=300&height=250&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
-              width="100%"
-              height="250"
-              className="border-none overflow-hidden"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
+            <div className="flex flex-col items-center justify-center p-8 text-[#0024f8]/30">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="w-16 h-16 mb-4"
+              >
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+              <p className="text-sm font-black uppercase tracking-widest text-[#1a2b48] text-center">Desiya Makkal Munnani</p>
+            </div>
           </SocialCard>
 
           {/* 📸 INSTAGRAM */}
@@ -107,13 +110,13 @@ const SocialMediaLinks = () => {
             title="Instagram"
             icon="📸"
             color="border-[#0024f8]"
-            buttonLink="https://www.instagram.com/dmm_pondy/?hl=en"
+            buttonLink="https://www.instagram.com/dmmparty_26/"
             buttonText="Follow"
             buttonColor="bg-[#0024f8]"
           >
             <iframe
               title="dmm Instagram"
-              src="https://www.instagram.com/dmm_pondy/embed"
+              src="https://www.instagram.com/dmmparty_26/embed"
               width="100%"
               height="300"
               className="rounded-lg border-none overflow-hidden"
@@ -126,13 +129,13 @@ const SocialMediaLinks = () => {
             title="Twitter"
             icon="𝕏"
             color="border-[#1a2b48]"
-            buttonLink="https://x.com"
+            buttonLink="https://x.com/DmmParty2026"
             buttonText="Follow"
             buttonColor="bg-[#1a2b48]"
           >
             <div className="flex flex-col items-center justify-center p-8 text-[#1a2b48]/30">
               <Twitter size={60} strokeWidth={1.5} />
-              <p className="mt-4 text-sm font-black uppercase tracking-widest">@dmm_Official</p>
+              <p className="mt-4 text-sm font-black uppercase tracking-widest">@DmmParty2026</p>
             </div>
           </SocialCard>
 
@@ -141,18 +144,21 @@ const SocialMediaLinks = () => {
             title="YouTube"
             icon="▶️"
             color="border-[#0024f8]"
-            buttonLink="https://www.youtube.com/@dmm-u2"
+            buttonLink="https://www.youtube.com/@DMMPARTY-f2v"
             buttonText="Subscribe"
             buttonColor="bg-[#0024f8]"
           >
-            <iframe
-              title="dmm YouTube"
-              src="https://www.youtube.com/embed?listType=user_uploads&list=@dmm-u2"
-              width="100%"
-              height="200"
-              className="border-none overflow-hidden"
-              allow="autoplay; encrypted-media"
-            ></iframe>
+            <div className="flex flex-col items-center justify-center p-8 text-[#0024f8]/30">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                className="w-16 h-16 mb-4"
+              >
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+              </svg>
+              <p className="text-sm font-black uppercase tracking-widest text-[#1a2b48]">@DMMPARTY-f2v</p>
+            </div>
           </SocialCard>
 
         </div>
